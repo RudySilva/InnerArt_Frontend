@@ -11,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import australia from '../../assets/images/nationalFlag/australia.png'
+import innerArtIcon from '../../assets/images/icons/inner-art-icon.png'
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   navigator: {
     marginLeft: '30px',
     color: 'white',
-    fontSize: '1vw'
+    fontSize: '0.8vw'
   },
   search: {
     position: 'relative',
@@ -56,8 +57,13 @@ const useStyles = makeStyles(theme => ({
       width: '40ch'
     }
   },
+  buttonIcon: {
+    marginLeft: '15%',
+  },
   flagIcon: {
-    marginLeft: '15%'
+    marginLeft: '15%',
+    height: '25px', 
+    width: '25px'
   }
 }))
 
@@ -70,17 +76,33 @@ const Navbar = () => {
     setAnchorEl(event.currentTarget)
   }
 
+  const handleClickSearch = (event) => {
+    if (event.key === 'Enter') {
+      console.log('Redirect to Search Page');
+    }
+  }
+
+  const Logo = () => {
+    return <img src={innerArtIcon} alt="Logo" />;
+  }
+
+  const AusFlag = () => {
+    return <img src={australia} alt="English" className={classes.flagIcon} />;
+  }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+
   return (
     <AppBar style={{ background: '#FF4500' }}>
       <Toolbar>
         <Typography className={classes.title} variant='h5'>
-          Inner Art
+          <Logo />
         </Typography>
         <div className={classes.search}>
-          <div className={classes.searchIcon}>
+          <div className={classes.searchIcon} onClick={handleClickSearch}>
             <SearchIcon />
           </div>
           <InputBase
@@ -90,6 +112,7 @@ const Navbar = () => {
               input: classes.inputInput
             }}
             inputProps={{ 'aria-label': 'search' }}
+            onKeyPress={handleClickSearch}           
           />
         </div>
 
@@ -101,42 +124,20 @@ const Navbar = () => {
           <Button
             aria-controls='simple-menu'
             aria-haspopup='true'
-            className={classes.flagIcon}
+            className={classes.buttonIcon}
             onClick={handleClick}
           >
-            <img
-              src={australia}
-              alt='my image'
-              style={{ height: '30px', width: '30px' }}
-            />
+          <div class="dropdown">
+            <AusFlag />
+            <div class="dropdown-content">
+              <a href="#">English</a>
+              <a href="#">Spanish</a>
+              <a href="#">Portuguese</a>
+            </div>
+          </div>
           </Button>
-
-          <Menu
-            id='simple-menu'
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>
-              <img
-                src={australia}
-                alt='my image'
-                style={{ height: '30px', width: '30px' }}
-              />
-            </MenuItem>
-
-            <MenuItem onClick={handleClose}>
-              <img
-                src={australia}
-                alt='my image'
-                style={{ height: '30px', width: '30px' }}
-              />
-            </MenuItem>
-          </Menu>
         </div>
-
-        <Button className={classes.navigator}>Login</Button>
+        <Button className={classes.navigator}>Login /</Button>
         <Button className={classes.navigator}>Sign up</Button>
       </Toolbar>
     </AppBar>
