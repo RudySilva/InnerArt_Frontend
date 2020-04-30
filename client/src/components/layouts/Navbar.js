@@ -72,6 +72,7 @@ const Navbar = () => {
   const [input, setInput] = useState('')
   const [anchorEl, setAnchorEl] = React.useState(null)
   const handleSubmit = event => setInput(event.target.value)
+  
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -127,9 +128,9 @@ const Navbar = () => {
             className={classes.buttonIcon}
             onClick={handleClick}
           >
-          <div class="dropdown">
+          <div className="dropdown">
             <AusFlag />
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <a href="#">English</a>
               <a href="#">Spanish</a>
               <a href="#">Portuguese</a>

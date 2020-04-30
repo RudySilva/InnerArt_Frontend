@@ -5,6 +5,7 @@ import SlideShow from './components/slider/Slideshow'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ArtGrid from './components/layouts/ArtGrid'
 import Survey from './components/layouts/Survey'
+import Footer from './components/layouts/Footer'
 function App () {
   return (
     <div className='App'>
@@ -13,6 +14,7 @@ function App () {
         <SlideShow />
         <ArtGrid />
         <Survey></Survey>
+        <Footer />
       </Router>
     </div>
   )
